@@ -1,0 +1,15 @@
+Cloud Farmer is a set of simple tools to deploy Server Farmer on new cloud instance
+in unattended more (without user interaction during the whole setup).
+
+Currently it supports only Amazon EC2 service and their flavor of Ubuntu 14.04 LTS,
+however there are plans to add support for all major cloud service providers.
+
+**Example usage**
+
+git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
+
+/opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /path/aws-test.pem
+
+**Customization**
+
+All user-related data are contained inside /opt/cloud/credentials directory.
