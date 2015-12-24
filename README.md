@@ -1,5 +1,5 @@
 Cloud Farmer is a set of simple tools to deploy Server Farmer on new cloud instance
-in unattended more (without user interaction during the whole setup).
+in unattended mode (without user interaction during the whole setup).
 
 Currently it supports only Amazon EC2 service and their flavor of Ubuntu 14.04 LTS,
 however there are plans to add support for all major cloud service providers.

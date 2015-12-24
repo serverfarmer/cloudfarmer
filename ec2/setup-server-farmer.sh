@@ -1,10 +1,15 @@
 #!/bin/bash
 . /root/variables.sh
 
+export SF_UNATTENDED=yes
+export DEBIAN_FRONTEND=noninteractive
+export LANG=C
+export LC_ALL=C
+
+apt-get update
+apt-get upgrade -y
 apt-get install -y git
 git clone https://github.com/$SF_GITHUB/serverfarmer /opt/farm
-
-. /opt/farm/scripts/functions.custom
 
 HOST=$1
 OSVER=`/opt/farm/scripts/config/detect-system-version.sh`
@@ -17,11 +22,6 @@ if [ ! -d /opt/farm/dist/$OSVER ]; then
 fi
 
 cp -a /etc/hostname /etc/hostname.orig
-
-export SF_UNATTENDED=yes
-export DEBIAN_FRONTEND=noninteractive
-export LANG=C
-export LC_ALL=C
 
 echo "HOST=$HOST" >/etc/farmconfig
 echo "OSVER=$OSVER" >>/etc/farmconfig
