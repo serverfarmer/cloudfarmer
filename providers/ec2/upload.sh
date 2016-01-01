@@ -16,13 +16,13 @@ log=$path/logs/$target.log
 echo "### BEGIN `date +'%Y-%m-%d %H:%M:%S'` ###" >>$log
 
 # use AWS temporary key, install main management key for root
-scp -i $tmpkey $path/credentials/ssh.keys $path/ec2/setup-root-keys.sh ubuntu@$target:/home/ubuntu >>$log
+scp -i $tmpkey $path/credentials/ssh.keys $path/providers/ec2/setup-root-keys.sh ubuntu@$target:/home/ubuntu >>$log
 ssh -i $tmpkey ubuntu@$target /home/ubuntu/setup-root-keys.sh >>$log
 
 # install Server Farmer
 admkey=`ssh_management_key_storage_filename $target`
 
-scp -i $admkey $path/credentials/variables.sh $path/ec2/setup-server-farmer.sh root@$target:/root >>$log
+scp -i $admkey $path/credentials/variables.sh $path/providers/ec2/setup-server-farmer.sh root@$target:/root >>$log
 ssh -i $admkey root@$target /root/setup-server-farmer.sh $target >>$log 2>>$log
 
 echo "### END `date +'%Y-%m-%d %H:%M:%S'` ###" >>$log
