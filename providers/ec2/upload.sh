@@ -19,6 +19,13 @@ echo "### BEGIN `date +'%Y-%m-%d %H:%M:%S'` ###" >>$log
 scp -i $tmpkey $path/credentials/ssh.keys $path/providers/ec2/setup-root-keys.sh ubuntu@$target:/home/ubuntu >>$log
 ssh -i $tmpkey ubuntu@$target /home/ubuntu/setup-root-keys.sh >>$log
 
+
+# TODO:
+# - use ec2-create-ssh-key.sh to create new key pair and upload it to EC2
+# - create new EC2 instance with the new key associated
+# - use the new key (instead of ssh.keys file and $admkey) below to install Server Farmer
+
+
 # install Server Farmer
 admkey=`ssh_management_key_storage_filename $target`
 
