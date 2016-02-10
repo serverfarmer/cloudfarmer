@@ -8,21 +8,5 @@ if ($argc < 2)
 $data = aws_request($argv[1], "ec2 describe-instances");
 
 foreach ($data["Reservations"] as $reservation) {
-	foreach ($reservation["Instances"] as $instance) {
-		$state = $instance["State"]["Name"];
-		$zone = $instance["Placement"]["AvailabilityZone"];
-		$type = $instance["InstanceType"];
-		$id = $instance["InstanceId"];
-		$vpcid = $instance["VpcId"];
-		$imgid = $instance["ImageId"];
-		$key = $instance["KeyName"];
-		$host = empty($instance["PublicDnsName"]) ? "-" : $instance["PublicDnsName"];
-
-		$descr = "$host $state $key $zone $type $id $imgid $vpcid";
-
-		foreach ($instance["SecurityGroups"] as $sg)
-			$descr .= " " . $sg["GroupId"];
-
-		echo "$descr\n";
-	}
+	aws_decode_reservation($reservation);
 }
