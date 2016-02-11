@@ -1,13 +1,18 @@
 #!/bin/sh
 
 if [ "$2" = "" ]; then
-	echo "usage: $0 <awscli-profile-name> <key-name>"
+	echo "usage: $0 <awscli-profile-name> <ssh-key-name>"
 	exit 1
 fi
 
 profile=$1
 name=$2
-key=/etc/local/.ssh/id_amazon_$name
+key=/etc/local/.ssh/id_ec2_$name
+
+if [ -f $key ]; then
+	echo "error: ssh key $key already exists"
+	exit 1
+fi
 
 ssh-keygen -q -t rsa -f $key -b 4096 -N ""
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$2" = "" ]; then
-	echo "usage: $0 <hostname> <temporary-key>"
+	echo "usage: $0 <hostname> <ssh-key-path>"
 	exit 1
 elif [ ! -f $2 ]; then
 	echo "error: key not found"
