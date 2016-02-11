@@ -25,10 +25,10 @@ function aws_decode_reservation($reservation)
 		$zone = $instance["Placement"]["AvailabilityZone"];
 		$type = $instance["InstanceType"];
 		$id = $instance["InstanceId"];
-		$vpcid = $instance["VpcId"];
 		$imgid = $instance["ImageId"];
 		$key = $instance["KeyName"];
 		$host = empty($instance["PublicDnsName"]) ? "-" : $instance["PublicDnsName"];
+		$vpcid = empty($instance["VpcId"]) ? "-" : $instance["VpcId"];
 
 		$descr = "$host $state $key $zone $type $id $imgid $vpcid";
 
