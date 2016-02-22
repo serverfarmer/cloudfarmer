@@ -1,5 +1,11 @@
 <?php
 
+function aws_profile()
+{
+	$out = shell_exec("/opt/cloud/providers/ec2/ec2-get-profile.sh");
+	return trim($out);
+}
+
 function aws_client($profile = "default")
 {
 	$_profile = escapeshellarg($profile);
