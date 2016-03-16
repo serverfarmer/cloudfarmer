@@ -34,7 +34,7 @@ mkdir -p   /etc/local/.config /etc/local/.ssh
 chmod 0700 /etc/local/.config /etc/local/.ssh
 chmod 0711 /etc/local
 
-/opt/farm/scripts/config/set-hostname.sh $HOST
+/opt/farm/scripts/setup/hostname.sh $HOST
 /opt/farm/scripts/setup/groups.sh
 /opt/farm/setup.sh
 
