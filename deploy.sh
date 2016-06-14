@@ -12,7 +12,7 @@ elif ! [[ $1 =~ ^[a-z0-9.-]+[.][a-z0-9]+$ ]]; then
 elif [ "`getent hosts $1`" = "" ]; then
 	echo "error: host $1 not found"
 	exit 1
-elif [ "`cat /etc/local/.config/*.hosts |grep \"^$1$\"`" != "" ]; then
+elif [ "`cat /etc/local/.farm/*.hosts |grep \"^$1$\"`" != "" ]; then
 	echo "error: host $1 already added"
 	exit 1
 fi
