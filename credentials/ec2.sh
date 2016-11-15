@@ -26,10 +26,10 @@ export EC2_VPC_SECURITY_GROUP=sg-1234abcd
 #
 ############################################################################
 #
-# Ubuntu 14.04 LTS image id (refreshed by Amazon every few weeks or months;
-# as for now, you'll have to update it yourself):
+# Ubuntu 14.04 LTS or 16.04 LTS image id (refreshed by Amazon every
+# few weeks or months; as for now, you'll have to update it yourself):
 #
-export EC2_AMI_ID=ami-9abea4fb
+export EC2_AMI_ID=ami-0d77397e
 #
 # default instance type to use, when type isn't explicitely specified
 #

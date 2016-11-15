@@ -9,7 +9,7 @@ function aws_profile()
 function aws_client($profile = "default")
 {
 	$_profile = escapeshellarg($profile);
-	return "/usr/local/bin/aws --profile $_profile";
+	return "aws --profile $_profile";
 }
 
 function aws_request($profile, $request)

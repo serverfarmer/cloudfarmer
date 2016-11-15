@@ -33,5 +33,4 @@ if [ -x /opt/farm/ext/farm-manager/add-dedicated-key.sh ]; then
 	fi
 fi
 
-echo $target >>/etc/local/.farm/backup.hosts
 echo $target >>/etc/local/.farm/ec2.hosts
