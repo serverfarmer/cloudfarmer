@@ -27,7 +27,9 @@ export EC2_VPC_SECURITY_GROUP=sg-1234abcd
 ############################################################################
 #
 # Ubuntu 14.04 LTS or 16.04 LTS image id (refreshed by Amazon every
-# few weeks or months; as for now, you'll have to update it yourself):
+# few weeks or months; as for now, you'll have to find and update it
+# yourself using https://cloud-images.ubuntu.com/locator/ec2/ page,
+# choosing hvm:ebs-ssd as instance type):
 #
 export EC2_AMI_ID=ami-0d77397e
 #

@@ -14,7 +14,6 @@ There are plans to add support for the below cloud service providers:
 - Microsoft Azure
 - Oktawave
 - Rackspace Cloud
-- Unizeto UniCloud
 - VMware vCloud Air
 
 **Example usage**
