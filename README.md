@@ -1,9 +1,12 @@
 Cloud Farmer is a set of simple tools to deploy Server Farmer on new cloud instance
 in unattended mode (without user interaction during the whole setup).
 
-Currently it supports only Amazon EC2 service with their flavor of Ubuntu (tested
-with 14.04 LTS and 16.04 LTS, but expected to work without problems with any recent
-Ubuntu version).
+Currently it supports:
+
+- Amazon EC2 service with their flavor of Ubuntu (tested with 14.04 LTS and 16.04 LTS,
+but expected to work without problems with any recent Ubuntu version)
+- any cloud service based on OpenStack (including public eg. Rackspace Cloud, private
+and hybrid clouds) with any recent Debian/Ubuntu version
 
 There are plans to add support for the below cloud service providers:
 
@@ -13,12 +16,11 @@ There are plans to add support for the below cloud service providers:
 - Joyent
 - Microsoft Azure
 - Oktawave
-- Rackspace Cloud
 - VMware vCloud Air
 
-**Example usage**
+## Example usage
 
-1. Installation:
+### Installation
 
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
@@ -37,18 +39,22 @@ aws configure
 Note that if you only want to work with instances created manually using AWS
 browser-based console, you don't need to install "awscli".
 
-2. Creating new cloud server instance:
+### Creating new cloud instance
+
+Note that creating instances is supported only for Amazon EC2.
 
 ```
 /opt/cloud/providers/ec2/ec2-create-simple.sh aws-test-key1 m4.xlarge
 ```
 
-3. Provisioning new instance:
+### Provisioning new cloud instance
 
 ```
 /opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /path/aws-test-key1.pem
+
+/opt/cloud/deploy.sh 162.209.99.47 /path/rackspace-test-key3.pem
 ```
 
-**Customization**
+## Customization
 
 All user-related data are contained inside /opt/cloud/credentials directory.

@@ -5,7 +5,7 @@ target=$1
 tmpkey=$2
 path=/opt/cloud
 
-ssh -i $tmpkey -o StrictHostKeyChecking=no -o PasswordAuthentication=no ubuntu@$target uptime >/dev/null 2>/dev/null
+ssh -i $tmpkey -o StrictHostKeyChecking=no -o PasswordAuthentication=no root@$target uptime >/dev/null 2>/dev/null
 
 if [[ $? != 0 ]]; then
 	echo "error: host $target denied access"
@@ -14,8 +14,6 @@ fi
 
 log=$path/logs/$target.log
 echo "### BEGIN `date +'%Y-%m-%d %H:%M:%S'` ###" >>$log
-
-ssh -i $tmpkey ubuntu@$target "cat /home/ubuntu/.ssh/authorized_keys |sudo tee /root/.ssh/authorized_keys >/dev/null" >>$log
 
 # install Server Farmer
 scp -i $tmpkey $path/credentials/variables.sh $path/providers/generic/setup-server-farmer.sh root@$target:/root >>$log
@@ -33,4 +31,4 @@ if [ -x /opt/farm/ext/farm-manager/add-dedicated-key.sh ]; then
 	fi
 fi
 
-echo $target >>/etc/local/.farm/ec2.hosts
+echo $target >>/etc/local/.farm/virtual.hosts
