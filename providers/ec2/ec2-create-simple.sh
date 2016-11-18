@@ -12,12 +12,7 @@ key=$1
 type=$2
 
 path=/opt/cloud/providers/ec2
-out=`$path/ec2-create-ssh-key.sh $key`
-
-if [ "$out" != "" ]; then
-	echo "$out"
-	exit 1
-fi
+$path/ec2-create-ssh-key.sh $key >/dev/null
 
 instance=`$path/ec2-create-instance.sh $key $type |awk "{ print \\$6 }"`
 
