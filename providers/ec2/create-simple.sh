@@ -20,7 +20,7 @@ if [ "$3" = "--async" ]; then
 	exit 0
 fi
 
-for S in 6 4 4 4 4 4 4 3 3 3 3 3 3 3 3 8; do
+for S in 8 7 7 7 7 7 6 6 6 6 5 5 5 5 5 4 4 4 4 4 8; do
 	sleep $S
 	host=`$path/list-instances.php |grep running |grep $instance |awk "{ print \\$1 }"`
 	if [ "$host" != "" ]; then

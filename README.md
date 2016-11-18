@@ -3,11 +3,9 @@ in unattended mode (without user interaction during the whole setup).
 
 Currently it supports:
 
-- Amazon EC2 service with their flavor of Ubuntu (tested with 14.04 LTS and 16.04
-LTS, but expected to work without problems with any recent Ubuntu version)
-- Rackspace Cloud service with Ubuntu 14.04 LTS or 16.04 LTS
-- any other cloud service based on OpenStack (including public, private and hybrid
- clouds) with any recent Debian/Ubuntu version
+- Amazon EC2
+- Rackspace Cloud
+- any cloud service based on OpenStack (including public, private and hybrid clouds)
 
 There are plans to add support for the below cloud service providers:
 
@@ -19,17 +17,59 @@ There are plans to add support for the below cloud service providers:
 - Oktawave
 - VMware vCloud Air
 
+All supported providers are well tested with Ubuntu 14.04 LTS and 16.04 LTS, and also
+are expected to work without major problems with any recent Debian or Ubuntu version).
+
+
 ## Example usage
 
 ### Installation
+
+Cloud Farmer requires Server Farmer installed and configured at least as farm manager,
+preferably also as backup collector.
 
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
 ```
 
-Now edit files in /opt/cloud/credentials directory. Then, if you want to create
-new Amazon EC2 instances automatically, you have to install "awscli" AWS command
-line client:
+Now edit files in /opt/cloud/credentials directory.
+
+### Creating new cloud instance
+
+```
+/opt/cloud/create.sh ec2 test_key1 m4.xlarge
+```
+
+```
+/opt/cloud/create.sh rackspace test_key3 compute1-60
+```
+
+### Provisioning new cloud instance
+
+```
+/opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /etc/local/.ssh/id_ec2_test_key1
+```
+
+```
+/opt/cloud/deploy.sh 162.209.99.47 /etc/local/.ssh/id_rack_test_key3
+```
+
+## Customization
+
+All user-related data are contained inside /opt/cloud/credentials directory.
+
+
+## External dependencies
+
+If you only want to work with already created cloud instances, Cloud Farmer is enough.
+However, Cloud Farmer provides also the simple, unified interface for creating new
+cloud instances, with just 1 command.
+
+This functionality is currently supported for Amazon EC2 and Rackspace Cloud services.
+
+### Amazon EC2
+
+Creating new Amazon EC2 instances requires "awscli" AWS command line client:
 
 ```
 apt-get install python-pip
@@ -37,25 +77,15 @@ pip install awscli
 aws configure
 ```
 
-Note that if you only want to work with instances created manually using AWS
-browser-based console, you don't need to install "awscli".
+### Rackspace Cloud
 
-### Creating new cloud instance
-
-Note that creating instances is supported only for Amazon EC2.
+Creating new Rackspace Cloud instances requires "rack" command line client:
 
 ```
-/opt/cloud/providers/ec2/create-simple.sh aws-test-key1 m4.xlarge
+wget -O /usr/local/bin/rack https://ec4a542dbf90c03b9f75-b342aba65414ad802720b41e8159cf45.ssl.cf5.rackcdn.com/1.2/Linux/amd64/rack
+chmod +x /usr/local/bin/rack
+rack configure
 ```
 
-### Provisioning new cloud instance
-
-```
-/opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /path/aws-test-key1.pem
-
-/opt/cloud/deploy.sh 162.209.99.47 /path/rackspace-test-key3.pem
-```
-
-## Customization
-
-All user-related data are contained inside /opt/cloud/credentials directory.
+Note that the configuration process will ask you for a Profile Name. Cloud Farmer
+works only with named profiles, not with the default nameless profile.
