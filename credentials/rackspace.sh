@@ -15,7 +15,7 @@ export RACKSPACE_PROFILE_NAME=default
 ############################################################################
 #
 # Ubuntu 14.04 LTS or 16.04 LTS image name (use list-images.sh script to
-# discovers all images available at your configured region):
+# discover all images available at your configured region):
 #
 export RACKSPACE_IMAGE_NAME="Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)"
 #

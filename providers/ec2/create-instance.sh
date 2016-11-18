@@ -23,4 +23,4 @@ aws ec2 run-instances \
 	--enable-api-termination \
 	--associate-public-ip-address \
 	--count 1 \
-	|/opt/cloud/providers/ec2/ec2-reservation.php
+	|/opt/cloud/providers/ec2/reservation.php

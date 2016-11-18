@@ -12,9 +12,9 @@ key=$1
 type=$2
 
 path=/opt/cloud/providers/ec2
-$path/ec2-create-ssh-key.sh $key >/dev/null
+$path/create-ssh-key.sh $key >/dev/null
 
-instance=`$path/ec2-create-instance.sh $key $type |awk "{ print \\$6 }"`
+instance=`$path/create-instance.sh $key $type |awk "{ print \\$6 }"`
 
 if [ "$3" = "--async" ]; then
 	exit 0
@@ -22,7 +22,7 @@ fi
 
 for S in 6 4 4 4 4 4 4 3 3 3 3 3 3 3 3 8; do
 	sleep $S
-	host=`$path/ec2-list-instances.php |grep running |grep $instance |awk "{ print \\$1 }"`
+	host=`$path/list-instances.php |grep running |grep $instance |awk "{ print \\$1 }"`
 	if [ "$host" != "" ]; then
 		echo $host
 		exit 0

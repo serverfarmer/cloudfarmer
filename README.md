@@ -3,10 +3,11 @@ in unattended mode (without user interaction during the whole setup).
 
 Currently it supports:
 
-- Amazon EC2 service with their flavor of Ubuntu (tested with 14.04 LTS and 16.04 LTS,
-but expected to work without problems with any recent Ubuntu version)
-- any cloud service based on OpenStack (including public eg. Rackspace Cloud, private
-and hybrid clouds) with any recent Debian/Ubuntu version
+- Amazon EC2 service with their flavor of Ubuntu (tested with 14.04 LTS and 16.04
+LTS, but expected to work without problems with any recent Ubuntu version)
+- Rackspace Cloud service with Ubuntu 14.04 LTS or 16.04 LTS
+- any other cloud service based on OpenStack (including public, private and hybrid
+ clouds) with any recent Debian/Ubuntu version
 
 There are plans to add support for the below cloud service providers:
 
@@ -44,7 +45,7 @@ browser-based console, you don't need to install "awscli".
 Note that creating instances is supported only for Amazon EC2.
 
 ```
-/opt/cloud/providers/ec2/ec2-create-simple.sh aws-test-key1 m4.xlarge
+/opt/cloud/providers/ec2/create-simple.sh aws-test-key1 m4.xlarge
 ```
 
 ### Provisioning new cloud instance

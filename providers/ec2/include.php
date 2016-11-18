@@ -2,7 +2,7 @@
 
 function aws_profile()
 {
-	$out = shell_exec("/opt/cloud/providers/ec2/ec2-get-profile.sh");
+	$out = shell_exec("/opt/cloud/providers/ec2/get-profile.sh");
 	return trim($out);
 }
 
