@@ -16,6 +16,7 @@ elif [ "`cat /etc/local/.farm/*.hosts |grep \"^$1$\"`" != "" ]; then
 	exit 1
 fi
 
+
 target=$1
 tmpkey=$2
 
@@ -25,4 +26,16 @@ elif [[ $target == *"cloudapp.azure.com" ]]; then
 	/opt/cloud/providers/azure/upload.sh $target $tmpkey
 else
 	/opt/cloud/providers/generic/upload.sh $target $tmpkey
+fi
+
+
+if [ -x /opt/farm/ext/farm-manager/add-dedicated-key.sh ]; then
+	/opt/farm/ext/farm-manager/add-dedicated-key.sh $target root
+	/opt/farm/ext/farm-manager/add-dedicated-key.sh $target backup
+
+	if [ -x /opt/farm/ext/backup-collector/add-backup-host.sh ]; then
+		/opt/farm/ext/backup-collector/add-backup-host.sh $target
+	fi
+
+	echo $target >>/etc/local/.farm/cloud.hosts
 fi

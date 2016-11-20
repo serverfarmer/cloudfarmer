@@ -4,6 +4,7 @@ in unattended mode (without user interaction during the whole setup).
 Currently it supports:
 
 - Amazon EC2
+- Microsoft Azure
 - Rackspace Cloud
 - any cloud service based on OpenStack (including public, private and hybrid clouds)
 
@@ -13,7 +14,6 @@ There are plans to add support for the below cloud service providers:
 - Google Cloud
 - IBM SoftLayer
 - Joyent
-- Microsoft Azure
 - Oktawave
 - VMware vCloud Air
 
@@ -41,6 +41,10 @@ Now edit files in /opt/cloud/credentials directory.
 ```
 
 ```
+/opt/cloud/create.sh azure testkey2 Standard_A2
+```
+
+```
 /opt/cloud/create.sh rackspace test_key3 compute1-60
 ```
 
@@ -48,6 +52,10 @@ Now edit files in /opt/cloud/credentials directory.
 
 ```
 /opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /etc/local/.ssh/id_ec2_test_key1
+```
+
+```
+/opt/cloud/deploy.sh testkey2-5c82.eastus.cloudapp.azure.com /etc/local/.ssh/id_azure_testkey2
 ```
 
 ```
@@ -75,6 +83,17 @@ Creating new Amazon EC2 instances requires "awscli" AWS command line client:
 apt-get install python-pip
 pip install awscli
 aws configure
+```
+
+### Microsoft Azure
+
+Creating new Microsoft Azure instances requires "azure" AWS command line client:
+
+```
+curl -sL https://deb.nodesource.com/setup_6.x |bash
+apt-get install -y nodejs
+npm install -g azure-cli
+azure login
 ```
 
 ### Rackspace Cloud

@@ -22,15 +22,3 @@ scp -i $tmpkey $path/credentials/variables.sh $path/providers/generic/setup-serv
 ssh -i $tmpkey root@$target /root/setup-server-farmer.sh $target >>$log 2>>$log
 
 echo "### END `date +'%Y-%m-%d %H:%M:%S'` ###" >>$log
-
-# add instance to server farm
-if [ -x /opt/farm/ext/farm-manager/add-dedicated-key.sh ]; then
-	/opt/farm/ext/farm-manager/add-dedicated-key.sh $target root
-	/opt/farm/ext/farm-manager/add-dedicated-key.sh $target backup
-
-	if [ -x /opt/farm/ext/backup-collector/add-backup-host.sh ]; then
-		/opt/farm/ext/backup-collector/add-backup-host.sh $target
-	fi
-fi
-
-echo $target >>/etc/local/.farm/ec2.hosts
