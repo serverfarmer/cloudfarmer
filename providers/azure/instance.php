@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-require_once "/opt/cloud/providers/ec2/include.php";
+require_once "/opt/cloud/providers/azure/include.php";
 
 $json = "";
 $fp = fopen("php://stdin", "r");
@@ -14,4 +14,4 @@ $data = json_decode($json, true);
 if (is_null($data))
 	die("error: $json\n");
 
-aws_decode_reservation($data);
+azure_decode_instance($data);

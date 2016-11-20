@@ -18,8 +18,8 @@ function aws_request($profile, $request)
 	$json = shell_exec("$aws $request");
 	$data = json_decode($json, true);
 
-	if (empty($data))
-		die("error\n");
+	if (is_null($data))
+		die("error: $json\n");
 
 	return $data;
 }
