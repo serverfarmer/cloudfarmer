@@ -4,13 +4,13 @@ in unattended mode (without user interaction during the whole setup).
 Currently it supports:
 
 - Amazon EC2
+- Beyond e24cloud.com
 - Microsoft Azure
 - Rackspace Cloud
 - any cloud service based on OpenStack (including public, private and hybrid clouds)
 
 There are plans to add support for the below cloud service providers:
 
-- Beyond e24cloud.com
 - Google Cloud
 - IBM SoftLayer
 - Joyent
@@ -48,6 +48,10 @@ Now edit files in /opt/cloud/credentials directory.
 /opt/cloud/create.sh rackspace test_key3 compute1-60
 ```
 
+```
+/opt/cloud/create.sh e24cloud testkey4 m1.small
+```
+
 ### Provisioning new cloud instance
 
 ```
@@ -60,6 +64,10 @@ Now edit files in /opt/cloud/credentials directory.
 
 ```
 /opt/cloud/deploy.sh 162.209.99.47 /etc/local/.ssh/id_rack_test_key3
+```
+
+```
+/opt/cloud/deploy.sh ip-178-216-203-155.e24cloud.com /etc/local/.ssh/id_rack_testkey4
 ```
 
 ## Customization
@@ -84,6 +92,16 @@ Creating new Amazon EC2 instances requires "awscli" AWS command line client:
 apt-get install python-pip
 pip install awscli
 aws configure
+```
+
+### Beyond e24cloud.com
+
+Creating new e24cloud instances requires Amazon PHP SDK 1.6.2 (1.x latest) installed:
+
+```
+cd /usr/share/php
+wget http://pear.amazonwebservices.com/get/sdk-latest.zip
+unzip -b sdk-latest.zip
 ```
 
 ### Microsoft Azure
