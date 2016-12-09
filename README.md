@@ -82,8 +82,8 @@ If you only want to work with already created cloud instances, Cloud Farmer is e
 However, Cloud Farmer provides also the simple, unified interface for creating new
 cloud instances, with just 1 command.
 
-This functionality is currently supported for Amazon EC2, Microsoft Azure and Rackspace
-Cloud services.
+This functionality is currently supported for Amazon EC2, Beyond e24cloud.com, Google
+Compute Engine, Microsoft Azure and Rackspace Cloud services.
 
 ### Amazon EC2
 
