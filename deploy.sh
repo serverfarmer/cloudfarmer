@@ -22,8 +22,12 @@ tmpkey=$2
 
 if [[ $target == *"amazonaws.com" ]]; then
 	/opt/cloud/providers/ec2/upload.sh $target $tmpkey
+elif [[ $target == *"bc.googleusercontent.com" ]]; then
+	/opt/cloud/providers/gce/upload.sh $target $tmpkey
 elif [[ $target == *"cloudapp.azure.com" ]]; then
 	/opt/cloud/providers/azure/upload.sh $target $tmpkey
+elif [[ $target == *"e24cloud.com" ]]; then
+	/opt/cloud/providers/e24cloud/upload.sh $target $tmpkey
 else
 	/opt/cloud/providers/generic/upload.sh $target $tmpkey
 fi

@@ -5,17 +5,10 @@ Currently it supports:
 
 - Amazon EC2
 - Beyond e24cloud.com
+- Google Compute Engine
 - Microsoft Azure
 - Rackspace Cloud
 - any cloud service based on OpenStack (including public, private and hybrid clouds)
-
-There are plans to add support for the below cloud service providers:
-
-- Google Cloud
-- IBM SoftLayer
-- Joyent
-- Oktawave
-- VMware vCloud Air
 
 All supported providers are well tested with Ubuntu 14.04 LTS and 16.04 LTS, and also
 are expected to work without major problems with any recent Debian or Ubuntu version).
@@ -52,6 +45,10 @@ Now edit files in /opt/cloud/credentials directory.
 /opt/cloud/create.sh e24cloud testkey4 m1.small
 ```
 
+```
+/opt/cloud/create.sh gce testkey5 n1-highcpu-2
+```
+
 ### Provisioning new cloud instance
 
 ```
@@ -68,6 +65,10 @@ Now edit files in /opt/cloud/credentials directory.
 
 ```
 /opt/cloud/deploy.sh ip-178-216-203-155.e24cloud.com /etc/local/.ssh/id_rack_testkey4
+```
+
+```
+/opt/cloud/deploy.sh 204.111.199.104.bc.googleusercontent.com /etc/local/.ssh/id_gce_testkey5
 ```
 
 ## Customization
@@ -102,6 +103,16 @@ Creating new e24cloud instances requires Amazon PHP SDK 1.6.2 (1.x latest) insta
 cd /usr/share/php
 wget http://pear.amazonwebservices.com/get/sdk-latest.zip
 unzip -b sdk-latest.zip
+```
+
+### Google Compute Engine
+
+Creating new GCE instances requires Google Cloud SDK installed:
+
+```
+curl https://sdk.cloud.google.com |bash
+exec -l $SHELL
+gcloud init
 ```
 
 ### Microsoft Azure
