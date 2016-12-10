@@ -1,7 +1,7 @@
 Cloud Farmer is a set of simple tools to deploy Server Farmer on new cloud instance
 in unattended mode (without user interaction during the whole setup).
 
-Currently it supports:
+It supports:
 
 - Amazon EC2
 - Beyond e24cloud.com
@@ -62,7 +62,7 @@ and make sure that your provider is properly configured.
 /opt/cloud/create.sh gce testkey5 n1-highcpu-2
 ```
 
-### Provisioning new cloud instance
+### Installing Server Farmer on new cloud instance
 
 ```
 /opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /etc/local/.ssh/id_ec2_test_key1
