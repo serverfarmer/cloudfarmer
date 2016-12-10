@@ -1,9 +1,10 @@
 #!/bin/sh
 #
-# Azure requires "azure" command line client. This tool, as opposite to command
-# line clients for other cloud services, doesn't support multiple profiles.
-# You can log in to multiple Azure accounts, however you can't control, which
-# account will be used to create instances.
+# Azure requires "azure" command line client. This tool allows using multiple
+# Azure accounts, however it doesn't allow choosing between them in any other
+# way than described here:
+#
+# https://docs.microsoft.com/pl-pl/azure/xplat-cli-connect#multiple-subscriptions
 #
 ############################################################################
 #

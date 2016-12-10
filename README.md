@@ -23,9 +23,22 @@ preferably also as backup collector.
 
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
+/opt/cloud/setup.sh yourprovider
 ```
 
-Now edit files in /opt/cloud/credentials directory.
+where `yourprovider` is one of: `azure`, `e24cloud`, `ec2`, `gce` or `rackspace`. The
+second command will install any required external dependencies for given provider.
+
+Note that for some providers (mainly `azure` & `gce`) it may need manual attention,
+including browser interaction, while for others (eg. `ec2`) you have to run the
+account setup separately.
+
+For `rackspace` provider, the configuration process will ask you for a Profile Name.
+Cloud Farmer works only with named profiles, not with the default nameless profile, so
+you have to type some non-empty name there, even if you use only one Rackspace account.
+
+After you finished the initial setup, edit files in `/opt/cloud/credentials` directory
+and make sure that your provider is properly configured.
 
 ### Creating new cloud instance
 
@@ -71,70 +84,38 @@ Now edit files in /opt/cloud/credentials directory.
 /opt/cloud/deploy.sh 204.111.199.104.bc.googleusercontent.com /etc/local/.ssh/id_gce_testkey5
 ```
 
-## Customization
+## How to contribute
 
-All user-related data are contained inside /opt/cloud/credentials directory.
+We are welcome to contributions of any kind: bug fixes, added code comments,
+support for new operating system versions, cloud platforms etc.
 
+If you want to contribute:
+- fork this repository and clone it to your machine
+- create a feature branch and do the change inside it
+- push your feature branch to github and create a pull request
 
-## External dependencies
+## License
 
-If you only want to work with already created cloud instances, Cloud Farmer is enough.
-However, Cloud Farmer provides also the simple, unified interface for creating new
-cloud instances, with just 1 command.
+|                      |                                          |
+|:---------------------|:-----------------------------------------|
+| **Author:**          | Tomasz Klim (<opensource@tomaszklim.pl>) |
+| **Copyright:**       | Copyright 2015-2016 Tomasz Klim          |
+| **License:**         | MIT                                      |
 
-This functionality is currently supported for Amazon EC2, Beyond e24cloud.com, Google
-Compute Engine, Microsoft Azure and Rackspace Cloud services.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-### Amazon EC2
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Creating new Amazon EC2 instances requires "awscli" AWS command line client:
-
-```
-apt-get install python-pip
-pip install awscli
-aws configure
-```
-
-### Beyond e24cloud.com
-
-Creating new e24cloud instances requires Amazon PHP SDK 1.6.2 (1.x latest) installed:
-
-```
-cd /usr/share/php
-wget http://pear.amazonwebservices.com/get/sdk-latest.zip
-unzip -b sdk-latest.zip
-```
-
-### Google Compute Engine
-
-Creating new GCE instances requires Google Cloud SDK installed:
-
-```
-curl https://sdk.cloud.google.com |bash
-exec -l $SHELL
-gcloud init
-```
-
-### Microsoft Azure
-
-Creating new Microsoft Azure instances requires "azure" AWS command line client:
-
-```
-curl -sL https://deb.nodesource.com/setup_6.x |bash
-apt-get install -y nodejs
-npm install -g azure-cli
-azure login
-```
-
-### Rackspace Cloud
-
-Creating new Rackspace Cloud instances requires "rack" command line client:
-
-```
-wget -O /usr/local/bin/rack https://ec4a542dbf90c03b9f75-b342aba65414ad802720b41e8159cf45.ssl.cf5.rackcdn.com/1.2/Linux/amd64/rack
-chmod +x /usr/local/bin/rack
-rack configure
-```
-
-Note that the configuration process will ask you for a Profile Name. Cloud Farmer
-works only with named profiles, not with the default nameless profile.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

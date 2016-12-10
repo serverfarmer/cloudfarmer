@@ -1,0 +1,14 @@
+#!/bin/sh
+# https://cloud.google.com/sdk/downloads
+
+if [ "`which gcloud 2>/dev/null`" != "" ]; then
+	gcloud components update
+else
+	curl https://sdk.cloud.google.com |bash
+	exec -l $SHELL
+	gcloud init
+fi
+
+if [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
+	gcloud auth login
+fi
