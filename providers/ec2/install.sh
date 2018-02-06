@@ -1,11 +1,9 @@
 #!/bin/sh
-. /opt/farm/scripts/functions.install
-
 # http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 
-install_deb libyaml-dev
-install_deb python-yaml
-install_deb python-pip
+/opt/farm/ext/repos/package/install.sh libyaml-dev
+/opt/farm/ext/repos/package/install.sh python-yaml
+/opt/farm/ext/repos/package/install.sh python-pip
 
 if [ "`pip list |grep awscli`" = "" ]; then
 	pip install awscli
