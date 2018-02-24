@@ -1,1 +1,0 @@
-../ec2/upload.sh

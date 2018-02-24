@@ -44,44 +44,20 @@ and make sure that your provider is properly configured.
 
 ```
 /opt/cloud/create.sh ec2 test_key1 m4.xlarge
-```
-
-```
 /opt/cloud/create.sh azure testkey2 Standard_A2
-```
-
-```
 /opt/cloud/create.sh rackspace test_key3 compute1-60
-```
-
-```
 /opt/cloud/create.sh e24cloud testkey4 m1.small
-```
-
-```
 /opt/cloud/create.sh gce testkey5 n1-highcpu-2
 ```
 
 ### Installing Server Farmer on new cloud instance
 
 ```
-/opt/cloud/deploy.sh ec2-54-123-45-67.compute-1.amazonaws.com /etc/local/.ssh/id_ec2_test_key1
-```
-
-```
-/opt/cloud/deploy.sh testkey2-5c82.eastus.cloudapp.azure.com /etc/local/.ssh/id_azure_testkey2
-```
-
-```
-/opt/cloud/deploy.sh 162.209.99.47 /etc/local/.ssh/id_rack_test_key3
-```
-
-```
-/opt/cloud/deploy.sh ip-178-216-203-155.e24cloud.com /etc/local/.ssh/id_rack_testkey4
-```
-
-```
-/opt/cloud/deploy.sh 204.111.199.104.bc.googleusercontent.com /etc/local/.ssh/id_gce_testkey5
+sf-provision ec2-54-123-45-67.compute-1.amazonaws.com /etc/local/.ssh/id_ec2_test_key1 default
+sf-provision testkey2-5c82.eastus.cloudapp.azure.com /etc/local/.ssh/id_azure_testkey2 default
+sf-provision 162.209.99.47 /etc/local/.ssh/id_rack_test_key3 default
+sf-provision ip-178-216-203-155.e24cloud.com /etc/local/.ssh/id_rack_testkey4 default
+sf-provision 204.111.199.104.bc.googleusercontent.com /etc/local/.ssh/id_gce_testkey5 default
 ```
 
 ## How to contribute
