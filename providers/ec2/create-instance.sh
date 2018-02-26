@@ -21,7 +21,7 @@ aws ec2 run-instances \
 	--instance-type $type \
 	--image-id $EC2_AMI_ID \
 	--key-name $key \
-	--security-group-ids $EC2_VPC_SECURITY_GROUP \
+	--security-groups default \
 	--enable-api-termination \
 	--associate-public-ip-address \
 	--count 1 \
