@@ -43,21 +43,21 @@ After you finished the initial setup, you can always manually edit files inside
 ### Creating new cloud instance
 
 ```
-/opt/cloud/create.sh ec2 test_key1 m4.xlarge
-/opt/cloud/create.sh azure testkey2 Standard_A2
-/opt/cloud/create.sh rackspace test_key3 compute1-60
-/opt/cloud/create.sh e24cloud testkey4 m1.small
-/opt/cloud/create.sh gce testkey5 n1-highcpu-2
+/opt/cloud/create.sh ec2 prod test_key1 m4.xlarge
+/opt/cloud/create.sh azure default testkey2 Standard_A2
+/opt/cloud/create.sh rackspace office test_key3 compute1-60
+/opt/cloud/create.sh e24cloud testing testkey4 m1.small
+/opt/cloud/create.sh gce default testkey5 n1-highcpu-2
 ```
 
 ### Installing Server Farmer on new cloud instance
 
 ```
-sf-provision ec2-54-123-45-67.compute-1.amazonaws.com /etc/local/.ssh/id_ec2_test_key1 default
-sf-provision testkey2-5c82.eastus.cloudapp.azure.com /etc/local/.ssh/id_azure_testkey2 default
-sf-provision 162.209.99.47 /etc/local/.ssh/id_rack_test_key3 default
-sf-provision ip-178-216-203-155.e24cloud.com /etc/local/.ssh/id_rack_testkey4 default
-sf-provision 204.111.199.104.bc.googleusercontent.com /etc/local/.ssh/id_gce_testkey5 default
+/opt/cloud/provision.sh ec2 ec2-54-123-45-67.compute-1.amazonaws.com test_key1 default
+/opt/cloud/provision.sh azure testkey2-5c82.eastus.cloudapp.azure.com testkey2 default
+/opt/cloud/provision.sh rackspace 162.209.99.47 test_key3 default
+/opt/cloud/provision.sh e24cloud ip-178-216-203-155.e24cloud.com testkey4 default
+/opt/cloud/provision.sh gce 204.111.199.104.bc.googleusercontent.com testkey5 default
 ```
 
 ## How to contribute
