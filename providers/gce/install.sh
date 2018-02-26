@@ -5,6 +5,4 @@ if [ "`which gcloud 2>/dev/null`" != "" ]; then
 	gcloud components update
 else
 	curl https://sdk.cloud.google.com |bash
-	exec -l $SHELL
-	gcloud init
 fi

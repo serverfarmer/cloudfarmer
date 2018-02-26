@@ -1,5 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 . /opt/farm/scripts/functions.dialog
+
+if [ "`which gcloud 2>/dev/null`" = "" ]; then
+	if [ -f '/root/google-cloud-sdk/path.bash.inc' ]; then . '/root/google-cloud-sdk/path.bash.inc'; fi
+	if [ -f '/root/google-cloud-sdk/completion.bash.inc' ]; then . '/root/google-cloud-sdk/completion.bash.inc'; fi
+fi
+
+if [ ! -d /root/.config/gcloud ]; then
+	gcloud init
+fi
 
 if [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
 	gcloud auth login
