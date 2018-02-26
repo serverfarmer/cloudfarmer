@@ -1,15 +1,18 @@
 #!/bin/sh
 
-if [ "$1" = "" ]; then
-	echo "usage: $0 <ssh-key-name> [instance-type] [--async]"
+if [ "$2" = "" ]; then
+	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type] [--async]"
 	exit 1
 elif [ "`which gcloud 2>/dev/null`" = "" ]; then
 	echo "error: gcloud command line client not found"
 	exit 1
+elif [ "$1" != "default" ]; then
+	echo "error: gcloud command line client supports only one account, named \"default\""
+	exit 1
 fi
 
-key=$1
-type=$2
+key=$2
+type=$3
 
 path=/opt/cloud/providers/gce
 $path/create-ssh-key.sh $key >/dev/null
@@ -20,7 +23,7 @@ if [ "$host" = "" ]; then
 	exit 1
 fi
 
-if [ "$3" = "--async" ]; then
+if [ "$4" = "--async" ]; then
 	exit 0
 fi
 

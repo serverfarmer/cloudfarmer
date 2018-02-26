@@ -1,4 +1,9 @@
 #!/bin/sh
-. /opt/cloud/credentials/rackspace.sh
 
-rack servers image list --profile $RACKSPACE_PROFILE_NAME
+if [ "$1" = "" ]; then
+	echo "usage: $0 <cloud-account>"
+	exit 1
+fi
+
+account=$1
+rack servers image list --profile $account

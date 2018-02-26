@@ -8,7 +8,3 @@ else
 	exec -l $SHELL
 	gcloud init
 fi
-
-if [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
-	gcloud auth login
-fi

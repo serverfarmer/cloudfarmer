@@ -1,20 +1,24 @@
 <?php
 
 require_once "sdk-1.6.2/sdk.class.php";
-require_once "/opt/cloud/credentials/e24cloud.php";
 
-function e24client()
+function read_variable($account, $var)
 {
-	global $E24CLOUD_API_KEY;
-	global $E24CLOUD_API_SECRET;
-	global $E24CLOUD_REGION;
+	return trim(shell_exec(". /etc/local/.cloud/$account/e24cloud.sh; echo \$$var"));
+}
+
+function e24client($account)
+{
+	$key = read_variable($account, "E24CLOUD_API_KEY");
+	$secret = read_variable($account, "E24CLOUD_API_SECRET");
+	$region = read_variable($account, "E24CLOUD_REGION");
 
 	$e24 = new AmazonEC2(array(
-		"key" => $E24CLOUD_API_KEY,
-		"secret" => $E24CLOUD_API_SECRET,
+		"key" => $key,
+		"secret" => $secret,
 	));
 
-	$host = "https://$E24CLOUD_REGION.api.e24cloud.com";
+	$host = "https://$region.api.e24cloud.com";
 	$e24->set_hostname($host);
 
 	return $e24;

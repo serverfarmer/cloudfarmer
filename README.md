@@ -18,27 +18,27 @@ are expected to work without major problems with any recent Debian or Ubuntu ver
 
 ### Installation
 
-Cloud Farmer requires Server Farmer installed and configured at least as farm manager,
-preferably also as backup collector.
+Cloud Farmer requires Server Farmer installed, with configured roles farm-manager,
+farm-provisioning, and preferably also backup-collector.
 
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
-/opt/cloud/setup.sh yourprovider
+/opt/cloud/install.sh
+/opt/cloud/setup-account.sh yourprovider youraccount
 ```
 
-where `yourprovider` is one of: `azure`, `e24cloud`, `ec2`, `gce` or `rackspace`. The
-second command will install any required external dependencies for given provider.
+where `yourprovider` is one of: `azure`, `e24cloud`, `ec2`, `gce` or `rackspace`, and
+`youraccount` is the name of your configured account (`e24cloud`, `ec2` and `rackspace`
+support having multiple accounts at the same time).
 
-Note that for some providers (mainly `azure` & `gce`) it may need manual attention,
-including browser interaction, while for others (eg. `ec2`) you have to run the
-account setup separately.
+Note that for `azure` and `gce`, the setup process needs browser interaction.
 
 For `rackspace` provider, the configuration process will ask you for a Profile Name.
 Cloud Farmer works only with named profiles, not with the default nameless profile, so
 you have to type some non-empty name there, even if you use only one Rackspace account.
 
-After you finished the initial setup, edit files in `/opt/cloud/credentials` directory
-and make sure that your provider is properly configured.
+After you finished the initial setup, you can always manually edit files inside
+`/etc/local/.cloud` directory to make sure that your provider is properly configured.
 
 ### Creating new cloud instance
 

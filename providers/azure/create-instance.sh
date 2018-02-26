@@ -1,5 +1,5 @@
 #!/bin/sh
-. /opt/cloud/credentials/azure.sh
+. /etc/local/.cloud/default/azure.sh
 
 if [ "$1" = "" ]; then
 	echo "usage: $0 <ssh-key-name> [instance-type]"

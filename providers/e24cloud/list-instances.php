@@ -3,8 +3,12 @@
 
 require_once "/opt/cloud/providers/e24cloud/include.php";
 
+if ($argc < 2)
+	die("usage: $argv[0] <cloud-account>\n");
 
-$e24 = e24client();
+$account = $argv[1];
+
+$e24 = e24client($account);
 $response = $e24->describe_instances();
 
 foreach ($response->body->reservationSet->item as $item) {
@@ -18,7 +22,7 @@ foreach ($response->body->reservationSet->item as $item) {
 
 	$sshkey = "-ssh";
 	$region = "-region";
-	$cache  = "/root/.e24-$id.dump";
+	$cache  = "/var/log/provisioning/.e24-$account-$id.dump";
 
 	if (file_exists($cache)) {
 		$json = file_get_contents($cache);

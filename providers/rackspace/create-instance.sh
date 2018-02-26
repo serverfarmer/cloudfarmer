@@ -1,16 +1,18 @@
 #!/bin/sh
-. /opt/cloud/credentials/rackspace.sh
 
-if [ "$1" = "" ]; then
-	echo "usage: $0 <ssh-key-name> [instance-type]"
+if [ "$2" = "" ]; then
+	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type]"
 	exit 1
 fi
 
-key=$1
+account=$1
+key=$2
 random=`date +%s |md5sum |head -c 4`
 
-if [ "$2" != "" ]; then
-	type=$2
+. /etc/local/.cloud/$account/rackspace.sh
+
+if [ "$3" != "" ]; then
+	type=$3
 else
 	type=$RACKSPACE_DEFAULT_INSTANCE_TYPE
 fi
@@ -20,4 +22,4 @@ rack servers instance create \
 	--flavor-id $type \
 	--keypair $key \
 	--image-name "$RACKSPACE_IMAGE_NAME" \
-	--profile $RACKSPACE_PROFILE_NAME
+	--profile $account

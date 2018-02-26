@@ -1,4 +1,9 @@
 #!/bin/sh
-. /opt/cloud/credentials/rackspace.sh
 
-rack servers keypair list --profile $RACKSPACE_PROFILE_NAME |grep -v ^Name |cut -f 1
+if [ "$1" = "" ]; then
+	echo "usage: $0 <cloud-account>"
+	exit 1
+fi
+
+account=$1
+rack servers keypair list --profile $account |grep -v ^Name |cut -f 1

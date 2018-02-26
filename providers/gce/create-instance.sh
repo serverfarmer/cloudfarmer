@@ -1,5 +1,5 @@
 #!/bin/sh
-. /opt/cloud/credentials/gce.sh
+. /etc/local/.cloud/default/gce.sh
 
 if [ "$1" = "" ]; then
 	echo "usage: $0 <ssh-key-name> [instance-type]"

@@ -1,21 +1,23 @@
 #!/bin/sh
-. /opt/cloud/credentials/ec2.sh
 
-if [ "$1" = "" ]; then
-	echo "usage: $0 <ssh-key-name> [instance-type]"
+if [ "$2" = "" ]; then
+	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type]"
 	exit 1
 fi
 
-key=$1
+account=$1
+key=$2
 
-if [ "$2" != "" ]; then
-	type=$2
+. /etc/local/.cloud/$account/ec2.sh
+
+if [ "$3" != "" ]; then
+	type=$3
 else
 	type=$EC2_DEFAULT_INSTANCE_TYPE
 fi
 
 aws ec2 run-instances \
-	--profile $EC2_PROFILE_NAME \
+	--profile $account \
 	--instance-type $type \
 	--image-id $EC2_AMI_ID \
 	--key-name $key \

@@ -8,9 +8,9 @@ fi
 name=$1
 key=/etc/local/.ssh/id_azure_$name
 
-if [ -f $key ]; then
-	echo "error: ssh key $key already exists"
-	exit 1
+if [ -f $name ] || [ -f $key ]; then
+	echo "warning: ssh key $key already exists"
+	exit 0
 fi
 
 ssh-keygen -q -t rsa -f $key -b 4096 -N ""

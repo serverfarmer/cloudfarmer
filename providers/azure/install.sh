@@ -11,7 +11,3 @@ if [ "`which azure 2>/dev/null`" = "" ]; then
 else
 	npm update -g azure-cli
 fi
-
-if [ "`azure account list |grep Enabled`" = "" ]; then
-	azure login
-fi

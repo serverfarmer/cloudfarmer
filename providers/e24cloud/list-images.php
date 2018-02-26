@@ -3,8 +3,12 @@
 
 require_once "/opt/cloud/providers/e24cloud/include.php";
 
+if ($argc < 2)
+	die("usage: $argv[0] <cloud-account>\n");
 
-$e24 = e24client();
+$account = $argv[1];
+
+$e24 = e24client($account);
 $response = $e24->describe_images();
 
 $images = array();
