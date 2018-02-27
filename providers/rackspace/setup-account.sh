@@ -4,7 +4,7 @@
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account>"
 	exit 1
-elif [ -f /etc/local/.cloud/$1/rackspace.sh ]; then
+elif [ -f /etc/local/.cloud/rackspace/$1.sh ]; then
 	echo "error: cloud account \"$1\" already configured"
 	exit 1
 fi
@@ -19,7 +19,7 @@ fi
 
 DEFAULT_INSTANCE_TYPE="`input \"enter Rackspace default instance type\" 2`"
 
-mkdir -p /etc/local/.cloud/$account
+mkdir -p /etc/local/.cloud/rackspace
 echo "#!/bin/sh
 #
 # Rackspace Cloud requires \"rack\" command line client. You can find more
@@ -43,5 +43,5 @@ export RACKSPACE_IMAGE_NAME=\"Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)\"
 # (use list-instance-types.sh script to discover all instance types):
 #
 export RACKSPACE_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
-" >/etc/local/.cloud/$account/rackspace.sh
-chmod 0600 /etc/local/.cloud/$account/rackspace.sh
+" >/etc/local/.cloud/rackspace/$account.sh
+chmod 0600 /etc/local/.cloud/rackspace/$account.sh

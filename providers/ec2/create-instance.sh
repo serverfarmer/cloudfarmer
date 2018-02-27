@@ -8,7 +8,7 @@ fi
 account=$1
 key=$2
 
-. /etc/local/.cloud/$account/ec2.sh
+. /etc/local/.cloud/ec2/$account.sh
 
 if [ "$3" != "" ]; then
 	type=$3

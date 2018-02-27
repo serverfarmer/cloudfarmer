@@ -9,7 +9,7 @@ account=$1
 key=$2
 random=`date +%s |md5sum |head -c 4`
 
-. /etc/local/.cloud/$account/rackspace.sh
+. /etc/local/.cloud/rackspace/$account.sh
 
 if [ "$3" != "" ]; then
 	type=$3

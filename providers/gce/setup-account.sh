@@ -14,14 +14,14 @@ if [ "`gcloud auth list 2>/dev/null |grep ACTIVE`" = "" ]; then
 	gcloud auth login
 fi
 
-if [ -f /etc/local/.cloud/default/gce.sh ]; then
+if [ -f /etc/local/.cloud/gce/default.sh ]; then
 	exit 0
 fi
 
 REGION="`input \"enter GCE region to use\" europe-west1-c`"
 DEFAULT_INSTANCE_TYPE="`input \"enter GCE default instance type\" n1-standard-1`"
 
-mkdir -p /etc/local/.cloud/default
+mkdir -p /etc/local/.cloud/gce
 echo "#!/bin/sh
 #
 # Google Compute Engine requires \"gcloud\" command line client, a part of
@@ -44,5 +44,5 @@ export GCE_PROJECT=ubuntu-os-cloud
 # (use list-instance-types.sh script to discover all instance types):
 #
 export GCE_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
-" >/etc/local/.cloud/default/gce.sh
-chmod 0600 /etc/local/.cloud/default/gce.sh
+" >/etc/local/.cloud/gce/default.sh
+chmod 0600 /etc/local/.cloud/gce/default.sh

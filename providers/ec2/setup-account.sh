@@ -4,7 +4,7 @@
 if [ "$1" = "" ]; then
 	echo "usage: $0 <cloud-account>"
 	exit 1
-elif [ -f /etc/local/.cloud/$1/ec2.sh ]; then
+elif [ -f /etc/local/.cloud/ec2/$1.sh ]; then
 	echo "error: cloud account \"$1\" already configured"
 	exit 1
 fi
@@ -20,7 +20,7 @@ fi
 DEFAULT_INSTANCE_TYPE="`input \"enter ec2 default instance type\" t2.micro`"
 AMI_ID="`input \"enter EC2 AMI id for latest Ubuntu LTS image\" ami-0d77397e`"
 
-mkdir -p /etc/local/.cloud/$account
+mkdir -p /etc/local/.cloud/ec2
 echo "#!/bin/sh
 #
 # CloudFarmer requires awscli AWS command line client, which support
@@ -39,5 +39,5 @@ export EC2_DEFAULT_INSTANCE_TYPE=$DEFAULT_INSTANCE_TYPE
 # choosing hvm:ebs-ssd as instance type):
 #
 export EC2_AMI_ID=$AMI_ID
-" >/etc/local/.cloud/$account/ec2.sh
-chmod 0600 /etc/local/.cloud/$account/ec2.sh
+" >/etc/local/.cloud/ec2/$account.sh
+chmod 0600 /etc/local/.cloud/ec2/$account.sh
