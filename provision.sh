@@ -10,6 +10,8 @@ fi
 
 if [ -f $3 ]; then
 	key=$3
+elif [ -x /opt/farm/ext/cloud-client-$1/utils/get-key-path.sh ]; then
+	key=`/opt/farm/ext/cloud-client-$1/utils/get-key-path.sh $3`
 else
 	key=`/opt/cloud/providers/$1/get-key-path.sh $3`
 fi
