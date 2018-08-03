@@ -25,4 +25,4 @@ aws ec2 run-instances \
 	--enable-api-termination \
 	--associate-public-ip-address \
 	--count 1 \
-	|/opt/cloud/providers/ec2/reservation.php
+	|/opt/farm/ext/cloud-client-ec2/internal/parse-reservation.php
