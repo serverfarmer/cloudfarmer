@@ -16,10 +16,13 @@ else
 	type=$EC2_DEFAULT_INSTANCE_TYPE
 fi
 
+region=`/opt/farm/ext/cloud-client-ec2/utils/get-configured-region.sh $account`
+amiid=`/opt/farm/ext/cloud-client-ec2/utils/get-ami-id.sh $region 18.04`
+
 aws ec2 run-instances \
 	--profile $account \
 	--instance-type $type \
-	--image-id $EC2_AMI_ID \
+	--image-id $amiid \
 	--key-name $key \
 	--security-groups default \
 	--enable-api-termination \
