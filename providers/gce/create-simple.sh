@@ -14,10 +14,8 @@ fi
 key=$2
 type=$3
 
-path=/opt/cloud/providers/gce
-$path/create-ssh-key.sh $key >/dev/null
-
-host=`$path/create-instance.sh $key $type |awk "{ print \\$1 }"`
+/opt/farm/ext/cloud-client-gce/utils/create-ssh-key.sh $key >/dev/null
+host=`/opt/farm/ext/cloud-client-gce/utils/create-instance.sh $key $type |awk '{ print $1 }'`
 
 if [ "$host" = "" ]; then
 	exit 1

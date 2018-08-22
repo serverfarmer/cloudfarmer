@@ -12,10 +12,9 @@ account=$1
 key=$2
 type=$3
 
-path=/opt/cloud/providers/rackspace
-$path/create-ssh-key.sh $account $key >/dev/null
+/opt/farm/ext/cloud-client-rackspace/utils/create-ssh-key.sh $account $key >/dev/null
 
-instance=`$path/create-instance.sh $account $key $type |grep ^ID |awk "{ print \\$2 }"`
+instance=`/opt/farm/ext/cloud-client-rackspace/utils/create-instance.sh $account $key $type |grep ^ID |awk '{ print $2 }'`
 
 if [ "$4" = "--async" ]; then
 	exit 0
@@ -23,7 +22,7 @@ fi
 
 for S in 8 7 7 7 7 7 6 6 6 6 5 5 5 5 5 4 4 4 4 4 8; do
 	sleep $S
-	host=`$path/list-instances.sh $account |grep ACTIVE |grep $instance |awk "{ print \\$4 }"`
+	host=`/opt/farm/ext/cloud-client-rackspace/utils/list-instances.sh $account |grep ACTIVE |grep $instance |awk '{ print $4 }'`
 	if [ "$host" != "" ]; then
 		echo $host
 		exit 0
