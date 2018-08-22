@@ -4,7 +4,7 @@ require_once "sdk-1.6.2/sdk.class.php";
 
 function read_variable($account, $var)
 {
-	return trim(shell_exec(". /etc/local/.cloud/e24cloud/$account.sh; echo \$$var"));
+	return trim(shell_exec(". /etc/local/.cloud/e24/$account.sh; echo \$$var"));
 }
 
 function e24client($account)

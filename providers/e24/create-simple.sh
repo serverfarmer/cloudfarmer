@@ -9,7 +9,7 @@ account=$1
 key=$2
 type=$3
 
-path=/opt/cloud/providers/e24cloud
+path=/opt/cloud/providers/e24
 $path/create-ssh-key.php $account $key >/dev/null
 
 if [ ! -f /etc/local/.ssh/id_e24_$key ]; then

@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-require_once "/opt/cloud/providers/e24cloud/include.php";
+require_once "/opt/cloud/providers/e24/include.php";
 
 if ($argc < 3)
 	die("usage: $argv[0] <cloud-account> <ssh-key-name> [instance-type]\n");
