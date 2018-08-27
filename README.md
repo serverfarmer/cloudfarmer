@@ -1,6 +1,4 @@
-Cloud Farmer is a multi-cloud server deployment tool, based on Server Farmer.
-It allows full lifecycle, fully automatic management of Linux-based cloud
-instances, supporting all important cloud computing vendors:
+Cloud Farmer is a multi-cloud server deployment tool, based on Server Farmer. It allows full lifecycle, fully automatic management of Linux-based cloud instances, supporting all important cloud computing vendors:
 
 - Alibaba Cloud
 - Amazon Web Services
@@ -11,17 +9,49 @@ instances, supporting all important cloud computing vendors:
 - Rackspace Cloud
 - any cloud service based on OpenStack (including public, private and hybrid clouds)
 
-All supported providers are well tested with Ubuntu 14.04 LTS, 16.04 LTS and 18.04 LTS,
-and also are expected to work without major problems with any recent Debian or Ubuntu
-version).
+All supported providers are well tested with Ubuntu 14.04 LTS, 16.04 LTS and 18.04 LTS, and also are expected to work without major problems with any recent Debian or Ubuntu version).
+
+
+## Operations reference
+
+```
+/opt/cloud/api
+|
+├── account
+|   ├── list-all.sh       # list all configured accounts for all providers
+|   ├── list.sh           # list all configured accounts for given provider, eg. ec2
+|   ├── setup.sh          # configure new account
+|   └── test.sh           # test if configured account is still valid (eg. from crontab)
+|
+├── image
+|   ├── list.sh           # list available Linux image names (in provider-specific format)
+|   └── get-ubuntu.sh     # get image name of latest Ubuntu LTS version supported by given provider
+|
+├── instance
+|   ├── list.sh           # list created instances (also created manually)
+|   ├── create.sh         # create new cloud instance
+|   ├── delete.sh         # delete instance
+|   └── provision.sh      # configure new instance (works also with all other servers)
+|
+├── instance-type
+|   └── list.sh           # list instance types (in provider-specific format, eg. m5.2xlarge)
+|
+├── key
+|   ├── list.sh           # list ssh keys uploaded to given provider/account
+|   ├── create.sh         # create and upload new ssh key pair
+|   └── get-path.sh       # get full path for given ssh key name
+|
+└── region
+    ├── list-available.sh # list all regions available for given provider/account
+    └── get-configured.sh # get primary region associated with given provider/account
+```
 
 
 ## Example usage
 
 ### Installation
 
-Cloud Farmer requires Server Farmer installed, with configured roles farm-manager,
-farm-provisioning, and preferably also backup-collector.
+Cloud Farmer requires Server Farmer installed, with configured roles farm-manager, farm-provisioning, and preferably also backup-collector.
 
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
@@ -29,19 +59,22 @@ git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
 /opt/cloud/api/account/setup.sh yourprovider youraccount
 ```
 
-where `yourprovider` is one of: `alibaba`, `azure`, `e24`, `ec2`, `gce`, `hetzner` or
-`rackspace`, and `youraccount` is the name of your configured account (`azure` and `gce`
-support having only one account configured at the same time, however `azure` allows
-operating on each region as separate account).
+where:
+- `yourprovider` is one of: `alibaba`, `azure`, `e24`, `ec2`, `gce`, `hetzner` or `rackspace`
+- `youraccount` is the name of your configured account (or region name in case of `azure`)
 
-Note that for `azure` and `gce`, the setup process needs browser interaction.
+After you finished the initial setup, you can always manually edit files inside `/etc/local/.cloud` directory to make sure that your provider is properly configured.
 
-For `rackspace` provider, the configuration process will ask you for a Profile Name.
-Cloud Farmer works only with named profiles, not with the default nameless profile, so
-you have to type some non-empty name there, even if you use only one Rackspace account.
+Additional notes:
 
-After you finished the initial setup, you can always manually edit files inside
-`/etc/local/.cloud` directory to make sure that your provider is properly configured.
+1. `azure` and `gce` support having only one account configured at the same time, however `azure` allows operating on each region as separate pseudo-account.
+
+2. For `azure` and `gce`, the setup process needs browser interaction.
+
+3. For `rackspace` provider, the configuration process will ask you for a Profile Name. Cloud Farmer works only with named profiles, not with the default nameless profile, so you have to type some non-empty name there, even if you use only one Rackspace account.
+
+4. `alibaba` provider doesn't support creating and deleting instances yet, and listing existing instances works only in full details mode.
+
 
 ### Creating new cloud instance
 
