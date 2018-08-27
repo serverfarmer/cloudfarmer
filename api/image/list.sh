@@ -11,4 +11,4 @@ fi
 provider=$1
 shift
 
-/opt/farm/ext/cloud-client-$provider/utils/setup-account.sh $@
+/opt/farm/ext/cloud-client-$provider/utils/list-images.sh $@

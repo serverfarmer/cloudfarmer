@@ -29,9 +29,10 @@ git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
 /opt/cloud/api/account/setup.sh yourprovider youraccount
 ```
 
-where `yourprovider` is one of: `azure`, `e24`, `ec2`, `gce` or `rackspace`, and
-`youraccount` is the name of your configured account (`e24`, `ec2` and `rackspace`
-support having multiple accounts at the same time).
+where `yourprovider` is one of: `alibaba`, `azure`, `e24`, `ec2`, `gce`, `hetzner` or
+`rackspace`, and `youraccount` is the name of your configured account (`azure` and `gce`
+support having only one account configured at the same time, however `azure` allows
+operating on each region as separate account).
 
 Note that for `azure` and `gce`, the setup process needs browser interaction.
 
@@ -45,21 +46,23 @@ After you finished the initial setup, you can always manually edit files inside
 ### Creating new cloud instance
 
 ```
-/opt/cloud/create.sh ec2 prod test_key1 m4.xlarge
-/opt/cloud/create.sh azure default testkey2 Standard_A2
-/opt/cloud/create.sh rackspace office test_key3 compute1-60
-/opt/cloud/create.sh e24 testing testkey4 m1.small
-/opt/cloud/create.sh gce default testkey5 n1-highcpu-2
+/opt/cloud/api/instance/create.sh ec2 prod_account prod_key1 m5.2xlarge
+/opt/cloud/api/instance/create.sh azure eastus testkey2 Standard_A2
 ```
 
-### Installing Server Farmer on new cloud instance
+Hostname of the new instance will be written on console, as soon as it's ready for provisioning.
+
+### Provisioning Server Farmer to the new cloud instance
 
 ```
-/opt/cloud/provision.sh ec2 ec2-54-123-45-67.compute-1.amazonaws.com test_key1 default
-/opt/cloud/provision.sh azure testkey2-5c82.eastus.cloudapp.azure.com testkey2 default
-/opt/cloud/provision.sh rackspace 162.209.99.47 test_key3 default
-/opt/cloud/provision.sh e24 ip-178-216-203-155.e24cloud.com testkey4 default
-/opt/cloud/provision.sh gce 204.111.199.104.bc.googleusercontent.com testkey5 default
+/opt/cloud/api/instance/provision.sh ec2 ec2-54-123-45-67.compute-1.amazonaws.com prod_key1 myprofile
+/opt/cloud/api/instance/provision.sh azure testkey2-5c82.eastus.cloudapp.azure.com testkey2 myprofile
+```
+
+### Listing all configured accounts and cloud instances
+
+```
+/opt/cloud/api/account/list-all.sh
 ```
 
 ## How to contribute
