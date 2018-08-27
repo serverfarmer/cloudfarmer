@@ -16,8 +16,7 @@ else
 	type=$EC2_DEFAULT_INSTANCE_TYPE
 fi
 
-region=`/opt/farm/ext/cloud-client-ec2/utils/get-configured-region.sh $account`
-amiid=`/opt/farm/ext/cloud-client-ec2/utils/get-ami-id.sh $region 18.04`
+amiid=`/opt/farm/ext/cloud-client-ec2/utils/get-ubuntu-image.sh $account`
 
 aws ec2 run-instances \
 	--profile $account \

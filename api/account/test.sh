@@ -8,8 +8,7 @@ elif [ ! -d /opt/cloud/providers/$1 ]; then
 	exit 1
 fi
 
-if [ -x /opt/farm/ext/cloud-client-$1/utils/setup-account.sh ]; then
-	/opt/farm/ext/cloud-client-$1/utils/setup-account.sh $2
-else
-	/opt/cloud/providers/$1/setup-account.sh $2
-fi
+provider=$1
+shift
+
+/opt/farm/ext/cloud-client-$provider/utils/test-account.sh $@

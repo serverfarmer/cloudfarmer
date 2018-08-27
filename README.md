@@ -1,17 +1,19 @@
-Cloud Farmer is a set of simple tools to deploy Server Farmer on new cloud instance
-in unattended mode (without user interaction during the whole setup).
+Cloud Farmer is a multi-cloud server deployment tool, based on Server Farmer.
+It allows full lifecycle, fully automatic management of Linux-based cloud
+instances, supporting all important cloud computing vendors:
 
-It supports:
-
-- Amazon EC2
+- Alibaba Cloud
+- Amazon Web Services
 - Beyond e24cloud.com
-- Google Compute Engine
+- Google Cloud Platform
+- Hetzner Cloud
 - Microsoft Azure
 - Rackspace Cloud
 - any cloud service based on OpenStack (including public, private and hybrid clouds)
 
-All supported providers are well tested with Ubuntu 14.04 LTS and 16.04 LTS, and also
-are expected to work without major problems with any recent Debian or Ubuntu version).
+All supported providers are well tested with Ubuntu 14.04 LTS, 16.04 LTS and 18.04 LTS,
+and also are expected to work without major problems with any recent Debian or Ubuntu
+version).
 
 
 ## Example usage
@@ -24,7 +26,7 @@ farm-provisioning, and preferably also backup-collector.
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud
 /opt/cloud/install.sh
-/opt/cloud/setup-account.sh yourprovider youraccount
+/opt/cloud/api/account/setup.sh yourprovider youraccount
 ```
 
 where `yourprovider` is one of: `azure`, `e24`, `ec2`, `gce` or `rackspace`, and

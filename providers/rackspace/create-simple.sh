@@ -3,9 +3,6 @@
 if [ "$2" = "" ]; then
 	echo "usage: $0 <cloud-account> <ssh-key-name> [instance-type] [--async]"
 	exit 1
-elif [ "`which rack 2>/dev/null`" = "" ]; then
-	echo "error: Rackspace command line client not found"
-	exit 1
 fi
 
 account=$1

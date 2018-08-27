@@ -9,14 +9,9 @@ account=$1
 key=$2
 type=$3
 
-/opt/farm/ext/cloud-client-e24/utils/create-ssh-key.php $account $key >/dev/null
+/opt/farm/ext/cloud-client-e24/utils/create-ssh-key.sh $account $key >/dev/null
 
-if [ ! -f /etc/local/.ssh/id_e24_$key ]; then
-	echo "error: cannot create ssh key $key"
-	exit 1
-fi
-
-instance=`/opt/farm/ext/cloud-client-e24/utils/create-instance.php $account $key $type |awk '{ print $6 }'`
+instance=`/opt/farm/ext/cloud-client-e24/utils/create-instance.sh $account $key $type |awk '{ print $6 }'`
 
 if [ "$4" = "--async" ]; then
 	exit 0
