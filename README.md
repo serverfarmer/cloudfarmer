@@ -51,7 +51,7 @@ All supported providers are well tested with Ubuntu 14.04 LTS, 16.04 LTS and 18.
 
 ### Installation
 
-Cloud Farmer requires Server Farmer installed, with configured roles farm-manager, farm-provisioning, and preferably also backup-collector.
+Cloud Farmer requires Server Farmer installed (basic installation is enough for the start, Cloud Farmer will install `farm-manager` and `farm-provisioning` roles automatically).
 
 ```
 git clone https://github.com/serverfarmer/cloudfarmer /opt/cloud

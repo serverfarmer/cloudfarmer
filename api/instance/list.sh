@@ -8,4 +8,8 @@ elif [ ! -d /opt/cloud/providers/$1 ]; then
 	exit 1
 fi
 
-/opt/farm/ext/cloud-client-$1/utils/list-instances.sh $2
+if [ -x /opt/farm/ext/cloud-client-$1/utils/list-instances.php ]; then
+	/opt/farm/ext/cloud-client-$1/utils/list-instances.php $2
+else
+	/opt/farm/ext/cloud-client-$1/utils/list-instances.sh $2
+fi
