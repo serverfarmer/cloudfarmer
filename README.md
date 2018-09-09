@@ -6,6 +6,7 @@ Cloud Farmer is a multi-cloud server deployment tool, based on Server Farmer. It
 - Google Cloud Platform
 - Hetzner Cloud
 - Microsoft Azure
+- Oracle Cloud
 - Rackspace Cloud
 - any cloud service based on OpenStack (including public, private and hybrid clouds)
 
