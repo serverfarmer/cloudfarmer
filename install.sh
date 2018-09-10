@@ -1,14 +1,11 @@
 #!/bin/sh
 
-mkdir -p   /etc/local/.cloud
-chmod 0700 /etc/local/.cloud
-
 /opt/farm/scripts/setup/extension.sh sf-farm-manager
 /opt/farm/scripts/setup/extension.sh sf-farm-provisioning
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-ec2
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-e24
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-gce
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-azure
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-alibaba
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-hetzner
-/opt/farm/scripts/setup/extension.sh sf-cloud-client-rackspace
+/opt/farm/scripts/setup/extension.sh sf-php
+
+if [ ! -d /opt/polynimbus ]; then
+	git clone https://github.com/polynimbus/polynimbus /opt/polynimbus
+fi
+
+/opt/polynimbus/install.sh
