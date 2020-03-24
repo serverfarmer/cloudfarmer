@@ -14,4 +14,4 @@ else
 	key=`/opt/polynimbus/drivers/$1/get-key-path.sh $3`
 fi
 
-/opt/farm/ext/farm-provisioning/provision.sh $2 $key $4
+/opt/farm/mgr/farm-provisioning/provision.sh $2 $key $4
