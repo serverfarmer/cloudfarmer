@@ -2,7 +2,7 @@
 
 This repository contains old, deprecated Server Farmer host provisioning tool.
 
-Cloud Farmer has been split into:
+Cloud Farmer has been rewritten as 2 separate tools:
 
-- separate Polynimbus project, see https://github.com/polynimbus/polynimbus
+- separate [Polynimbus](https://github.com/polynimbus/polynimbus) project
 - [`sm-farm-provisioning`](https://github.com/serverfarmer/sm-farm-provisioning) Server Farmer extension
