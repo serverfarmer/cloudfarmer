@@ -8,6 +8,8 @@ elif [ ! -d /opt/polynimbus/drivers/$1 ]; then
 	exit 1
 fi
 
+echo "Warning: Cloud Farmer is deprecated since 2018. Please update your scripts to use sm-farm-provisioning extension directly."
+
 if [ -f $3 ]; then
 	key=$3
 else
